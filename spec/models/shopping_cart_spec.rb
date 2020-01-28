@@ -10,7 +10,6 @@ RSpec.describe ShoppingCart, type: :model do
       new_cart = ShoppingCart.new(
         products: [my_first_product]
       )
-      binding.pry
       new_cart.save
       expect(ShoppingCart.all).to include(new_cart)
     end
@@ -28,6 +27,12 @@ RSpec.describe ShoppingCart, type: :model do
       expected_products = [my_first_product]
 
       expect(actual_cart_products).to eq(expected_products)
+    end
+  end
+
+  describe '#add_item' do
+    it 'adds a product item to the cart' do
+      expect { my_cart.add_item(my_first_product) }.to change(my_cart.products, :count).by(1)
     end
   end
 end
