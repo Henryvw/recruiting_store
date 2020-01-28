@@ -1,24 +1,8 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+#1 Download the app
+#2 Run rspec
 
-Things you may want to cover:
+Check out the simple Shopping Cart and Product models, use of #pluck and simple has_many :through relationships.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Happy to talk more if you have questions.
