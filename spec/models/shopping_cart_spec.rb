@@ -35,4 +35,38 @@ RSpec.describe ShoppingCart, type: :model do
       expect { my_cart.add_item(my_first_product) }.to change(my_cart.products, :count).by(1)
     end
   end
+
+  describe '#find_total_cost' do
+    it 'returns the cost of a product' do
+      new_product = Product.new(price: 66)
+      new_product.save
+      new_cart = ShoppingCart.new(
+        products: [new_product]
+      )
+      new_cart.save
+      expect((new_cart.products.find(id=new_product.id)).price).to eq(new_product.price)
+    end
+
+    it 'sums the cost of multiple products of the same type' do
+      first_ten_buck_watch = Product.new(description: "Watch", price: 10)
+      second_ten_buck_watch = Product.new(description: "Watch", price: 10)
+      new_cart = ShoppingCart.new(
+        products: [first_ten_buck_watch, second_ten_buck_watch]
+      )
+      new_cart.save
+      expect(new_cart.find_total_cost).to eq(20)
+    end
+
+    it 'calculates the cost of multiple products of different types' do
+      first_ten_buck_watch = Product.new(description: "Watch", price: 10)
+      an_iphone = Product.new(description: "Iphone", price: 30)
+      second_ten_buck_watch = Product.new(description: "Watch", price: 10)
+ 
+      new_cart = ShoppingCart.new(
+        products: [first_ten_buck_watch, an_iphone, second_ten_buck_watch]
+      )
+      new_cart.save
+      expect(new_cart.find_total_cost).to eq(50)
+    end
+  end 
 end
